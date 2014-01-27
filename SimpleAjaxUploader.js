@@ -1127,7 +1127,10 @@ ss.SimpleUpload.prototype = {
         }
       }
     });
-
+    
+    var token = $("meta[name='csrf-token']").attr("content");
+    
+    xhr.setRequestHeader("X-CSRF-Token", token);
     xhr.setRequestHeader( 'X-Requested-With', 'XMLHttpRequest' );
     xhr.setRequestHeader( 'X-File-Name', encodeURIComponent( filename ) );
 
@@ -1483,7 +1486,10 @@ ss.SimpleUpload.prototype = {
       if ( opts.nginxProgressUrl ) {
         xhr.setRequestHeader( opts.nginxProgressHeader, key );
       }
-
+      
+      var token = $("meta[name='csrf-token']").attr("content");
+    
+      xhr.setRequestHeader("X-CSRF-Token", token);
       xhr.setRequestHeader( 'X-Requested-With', 'XMLHttpRequest' );
       xhr.setRequestHeader( 'Accept', 'application/json, text/javascript, */*; q=0.01' );
     }
